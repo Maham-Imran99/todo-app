@@ -42,10 +42,14 @@ const Todo = () => {
                       onChange={(e) => setNewTodo(e.target.value)}
                     margin="normal"
                     focused
-                />
+                /> 
+                <Box ml={2}>
                 <Button color="primary" variant="contained" onClick={handleAddTodoClick}>
                 <AddIcon />
                 </Button>
+
+                </Box>
+                
             </Box>
             <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" gap={2}>
             <FilterButtons />
@@ -57,9 +61,11 @@ const Todo = () => {
                 value={newSearch}
             onChange={(e) => handleSearchChange(e.target.value)}
             />
+            <Box ml={2}> 
             <Button color="primary" variant="contained">
-                <Search />
+            <Search />
             </Button>
+            </Box>
             </Box>
             </Box>
            <TodoList />
