@@ -5,7 +5,8 @@ import { JWT_SECRET } from './config.js';
 
 
 
-const User  = mongoose.model("User")
+const User  = mongoose.model("User");
+const Todo = mongoose.model("Todo")
 
 const resolvers = {
     Mutation: {
@@ -35,8 +36,20 @@ const resolvers = {
          const token = jwt.sign({userId:user._id},JWT_SECRET)
          return {token}
         },
-    }
-        
+
+        CreateTodo: async(_, {name}, {userId}) => {
+            if(!userId) throw new Error("You must be logged in")
+           const todo = new Todo({name})
+           return await todo.save();
+        },
+        DeleteTodo: async (_, { id }, { userId }) => {
+           if (!userId) throw new Error("You must be logged in.");
+           const todo = await Todo.findOneAndDelete({ _id: id, userId });
+           if (!todo) throw new Error("Todo not found");
+           return todo;
+        }
+
+        }
     }
 
 

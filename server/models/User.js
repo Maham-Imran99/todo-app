@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+
 const userSchema = new mongoose.Schema({
     firstName:{
         type:String,
@@ -17,6 +18,7 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     
-})
+},
+{ timestamps: true });
 
 mongoose.model("User",userSchema);

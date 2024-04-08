@@ -2,30 +2,37 @@ import {gql} from "apollo-server";
 
 const typeDefs = gql`
  type Query{
-    user(_id:ID!):User
-    todos(filter: String, completed: Boolean, searchTerm: String):[Todo]
-    getTodo(id:ID!):Todo
+    User(_id:ID!):User
+    Todos(filter: String, completed: Boolean, searchTerm: String):[Todo]
+    GetTodo(id:ID!):Todo
  }
  type Mutation {
     SignUpUser(userNew: UserInput!) : User
     SignInUser(userSignin:UserSignInInput!): Token
-    CreateTodo(name: String!, userId: ID!): Todo 
+    CreateTodo(name: String!, status: TodoStatus): Todo 
     DeleteTodo(id: ID!): Todo
     ToggleTodoCompletion(id: ID!): Todo
  }
 
- type User{
+ type User {
      _id:ID!
      firstName:String
      lastName:String
      email:String!
      password:String!
  }
- type Todo{
-     id: ID
-     name:String
-     completed: Boolean
- }
+
+ enum TodoStatus {
+  COMPLETE
+  INCOMPLETE
+  DEFAULT
+}
+
+type Todo {
+  id: ID
+  name: String!
+  status: TodoStatus
+}
 
  input UserInput{
     firstName:String!
@@ -42,11 +49,5 @@ const typeDefs = gql`
  type Token {
     token: String
  }
-
- type AuthPayload {
-    token: String 
-    user: User 
- }
-
 `
 export default typeDefs

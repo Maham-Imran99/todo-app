@@ -1,8 +1,13 @@
-import {ApolloServer} from 'apollo-server'
-import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core'
+import {ApolloServer} from 'apollo-server';
+import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core';
 import typeDefs from './schemaGql.js';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import { MONGO_URI } from "./config.js";
+import './models/Todo.js';
+import './models/User.js';
+import resolvers from './resolvers.js';
+import { JWT_SECRET } from './config.js';
+import jwt from 'jsonwebtoken'
 
 mongoose.connect(MONGO_URI).then(() => {
   console.log("Connected to MongoDB");
@@ -10,15 +15,16 @@ mongoose.connect(MONGO_URI).then(() => {
   console.error("Error connecting to MongoDB:", err);
 });
 
-
-import './models/Todo.js';
-import './models/User.js';
-
-import resolvers from './resolvers.js'
-
 const server = new ApolloServer({ 
     typeDefs, 
     resolvers,
+    context:({req})=>{
+        const { authorization } = req.headers;
+        if(authorization){
+         const {userId} = jwt.verify(authorization,JWT_SECRET)
+         return {userId}
+        }
+    },
     plugins:[
         ApolloServerPluginLandingPageGraphQLPlayground()
     ]
