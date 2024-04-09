@@ -18,3 +18,22 @@ mutation SignInUser($userSignin: UserSignInInput!) {
   }
 }
 `
+
+export const CREATE_TODO = gql`
+mutation CreateTodo($name: String!, $status: TodoStatus){
+  todo: CreateTodo(name: $name, status: $status) {
+    id
+    name
+    status
+  }
+}
+`
+
+export const DELETE_TODO = gql`
+mutation DeleteTodo($id: ID!) {
+  DeleteTodo(id: $id) {
+    id
+    name
+  }
+}
+`

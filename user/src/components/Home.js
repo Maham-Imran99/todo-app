@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import {Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlSBEumtgp2ScpmpORknstfEHIakOHLXYZIQ&s"; // Direct URL to the image
+  // const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlSBEumtgp2ScpmpORknstfEHIakOHLXYZIQ&s"; // Direct URL to the image
 
   return (
     // <Box

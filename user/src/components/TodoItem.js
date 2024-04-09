@@ -8,9 +8,23 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 // import EditIcon from '@mui/icons-material/Edit';
 import { toggleTodo, removeTodo, markCompleted, markIncomplete } from '../context/actions';
-
+import { useMutation } from '@apollo/client';
+import { DELETE_TODO } from '../graphQl/mutations';
 const TodoItem = ({ todo, index }) => {
     const { dispatch } = useContext(TodoContext);
+    const [deleteTodo] = useMutation(DELETE_TODO);
+
+    const handleDeleteTodo = async() => {
+        try{
+            await deleteTodo({
+                variables:{ id: todo.id}
+            });
+            dispatch(removeTodo(index))
+        } catch (error) {
+            console.error('Error deleting todo:', error);
+        }
+    }
+
     return (
         <ListItem sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', borderBottom: 2, py: 2, gap: 4 }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -24,7 +38,7 @@ const TodoItem = ({ todo, index }) => {
                 <IconButton color="primary" onClick={() => dispatch(toggleTodo(index))}>
                     {todo.completed ? <ToggleOffIcon /> : <ToggleOnIcon />}
                 </IconButton>
-                <IconButton color="error" onClick={() => dispatch(removeTodo(index))}>
+                <IconButton color="error" onClick={handleDeleteTodo}>
                     <DeleteIcon />
                 </IconButton>
                 {!todo.completed && (

@@ -6,22 +6,41 @@ import {addTodo, updateSearchTerm} from '../context/actions';
 import FilterButtons from './FilterButton';
 import TodoList from './TodoList';
 import { Search } from '@mui/icons-material';
+import { useMutation } from '@apollo/client';
+import { CREATE_TODO } from '../graphQl/mutations';
 
 
 const Todo = () => {
     const {dispatch} = useContext(TodoContext);
     const [newTodo, setNewTodo] = useState("");
     const [newSearch, setNewSerch] = useState("");
+    const [createTodo] = useMutation(CREATE_TODO);
 
-    const handleAddTodo = (text) => {
-        dispatch(addTodo(text));
-    }
+    // const handleAddTodo = (text) => {
+    //     dispatch(addTodo(text));
+    // }
 
-    const handleAddTodoClick = () => {
-        if(newTodo.trim() !== '') {
-            handleAddTodo(newTodo.trim());
-            setNewTodo('');
+    const handleAddTodoClick = async () => {
+        // if(newTodo.trim() !== '') {
+        //     handleAddTodo(newTodo.trim());
+        //     setNewTodo('');
+        // }
+        if(newTodo.trim() === "") {
+            return;
         }
+        try {
+            const {data} = await createTodo({
+                variables: {
+                    name: newTodo
+                }
+            })
+            const newTodoData = data.CreateTodo;
+
+             dispatch(addTodo(newTodoData));
+             setNewTodo('');
+        } catch (error) {
+        console.error('Error adding todo:', error);
+    }
     }
 
     const handleSearchChange =(value) => {
