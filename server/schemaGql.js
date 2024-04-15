@@ -3,15 +3,15 @@ import {gql} from "apollo-server";
 const typeDefs = gql`
  type Query{
     User(_id:ID!):User
-    Todos(filter: String, completed: Boolean, searchTerm: String):[Todo]
+    Todos(filter: String, status: TodoStatus, searchTerm: String):[Todo]
     GetTodo(id:ID!):Todo
  }
  type Mutation {
     SignUpUser(userNew: UserInput!) : User
     SignInUser(userSignin:UserSignInInput!): Token
     CreateTodo(name: String!, status: TodoStatus): Todo 
-    DeleteTodo(id: ID!): Todo
-    ToggleTodoCompletion(id: ID!): Todo
+    DeleteTodo(_id: ID!): Todo
+    ToggleTodoCompletion(_id: ID!): Todo
  }
 
  type User {
@@ -29,7 +29,7 @@ const typeDefs = gql`
 }
 
 type Todo {
-  id: ID
+  _id: ID
   name: String!
   status: TodoStatus
 }

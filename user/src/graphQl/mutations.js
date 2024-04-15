@@ -22,7 +22,7 @@ mutation SignInUser($userSignin: UserSignInInput!) {
 export const CREATE_TODO = gql`
 mutation CreateTodo($name: String!, $status: TodoStatus){
   todo: CreateTodo(name: $name, status: $status) {
-    id
+    _id
     name
     status
   }
