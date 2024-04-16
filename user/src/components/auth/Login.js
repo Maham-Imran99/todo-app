@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { LOGIN_USER } from '../../graphQl/auth/mutations';
 import { mainContainerStyles } from '../../constants/index';
+import { useAuth } from '../../context/auth/AuthContext';
 
 export default function SignIn() {
+  const {login} = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [signInUser, { data, loading, error }] = useMutation(LOGIN_USER, {
     onCompleted(data) {
-      localStorage.setItem("token", data.user.token);
+      login(data.user.token);
       navigate('/todos')
     }
   })
