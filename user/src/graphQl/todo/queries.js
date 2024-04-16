@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const TODO_LIST = gql`
 query Todos($filter: String, $status: TodoStatus, $searchTerm: String){

@@ -1,14 +1,13 @@
-import React, { useState, useContext} from 'react';
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { useMutation } from '@apollo/client';
+import { Search } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
-import { TodoContext } from '../context/TodoContext';
-import {addTodo, updateSearchTerm} from '../context/actions';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { TodoContext } from '../../context/todo/TodoContext';
+import { addTodo, updateSearchTerm } from '../../context/todo/todoActions';
+import { CREATE_TODO } from '../../graphQl/todo/mutations';
 import FilterButtons from './FilterButton';
 import TodoList from './TodoList';
-import { Search } from '@mui/icons-material';
-import { useMutation } from '@apollo/client';
-import { CREATE_TODO } from '../graphQl/mutations';
-
 
 const Todo = () => {
     const {dispatch} = useContext(TodoContext);
@@ -16,30 +15,21 @@ const Todo = () => {
     const [newSearch, setNewSerch] = useState("");
     const [createTodo] = useMutation(CREATE_TODO);
 
-    // const handleAddTodo = (text) => {
-    //     dispatch(addTodo(text));
-    // }
-
-    const handleAddTodoClick = async () => {
-        // if(newTodo.trim() !== '') {
-        //     handleAddTodo(newTodo.trim());
-        //     setNewTodo('');
-        // }
-        if(newTodo.trim() === "") {
-            return;
+    const handleAddTodoClick = async (e) => {
+    // e.preventDefault();
+    try {
+        const response = await createTodo({
+            variables: {
+                name: newTodo
+            }
+        });
+        console.log("resppppppppppppppp",response.data.todo)
+        if (response.data && response.data.todo) {
+            dispatch(addTodo(response.data.todo));
+            setNewTodo(""); 
         }
-        try {
-            const {data} = await createTodo({
-                variables: {
-                    name: newTodo
-                }
-            })
-            const newTodoData = data.CreateTodo;
-
-             dispatch(addTodo(newTodoData));
-             setNewTodo('');
-        } catch (error) {
-        console.error('Error adding todo:', error);
+    } catch (error) {
+        console.error("Error creating todo", error);
     }
     }
 
@@ -93,3 +83,14 @@ const Todo = () => {
 }
 
 export default Todo
+
+
+/**use state is a hook that lets you add React state to function components. 
+ * When you call it, you get back a pair: the current state value and a function that lets you update it.
+ * You can use this function to set the state to a new value, and React will re-render the component with the updated state. 
+ * 
+ * useRef: is a hook that lets you keep a mutable reference to a value that doesn’t cause a component to re-render when it changes.
+ * 
+ * useEffect: It can be used for things like fetching data, directly interacting with the DOM, and setting up subscriptions or timers.
+ * 
+ * The useContext hook in React is a way for components to effectively share and use the same data without having to pass that data down through every level of the component tree. It's like a shortcut.*/

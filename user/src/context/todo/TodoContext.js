@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import {todoReducer, initialState}  from './reducer';
+import {todoReducer, initialState}  from './todoReducer';
 
 export const TodoContext = createContext();
 

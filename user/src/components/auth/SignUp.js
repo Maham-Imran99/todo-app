@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { SIGNUP_USER } from '../graphQl/mutations';
+import { SIGNUP_USER } from '../../graphQl/auth/mutations';
 // import { AuthContext } from '../context/AuthContext';
 import { TextField, Button, Box, Typography, Container, CircularProgress, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -95,7 +95,7 @@ export default function SignUp() {
             // value={formState.password}
             onChange={handleChange}
           />
-          <Button
+          <Button 
             type="submit"
             fullWidth
             variant="contained"

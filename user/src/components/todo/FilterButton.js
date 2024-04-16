@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Box, Button, MenuItem, FormControl, Select } from '@mui/material';
-import { TodoContext } from '../context/TodoContext';
-import { filterTodos, markAllCompleted } from '../context/actions';
+import { TodoContext } from '../../context/todo/TodoContext';
+import { filterTodos, markAllCompleted } from '../../context/todo/todoActions';
 
 const FilterButton = () => {
     const { state: { filter }, dispatch } = useContext(TodoContext);

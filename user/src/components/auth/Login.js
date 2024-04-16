@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { TextField, Button, Box, Typography, Container, CircularProgress, Alert} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { LOGIN_USER } from '../graphQl/mutations';
+import { LOGIN_USER } from '../../graphQl/auth/mutations';
 
 export default function SignIn() {
 const navigate = useNavigate();

@@ -7,12 +7,18 @@ import {
     FILTER_TODOS,
     MARK_ALL_COMPLETED,
     UPDATE_SEARCH_TERM,
+    SET_TODOS,
   } from './actionTypes';
   
   export const addTodo = (text) => ({
     type: ADD_TODO,
     payload: { text },
   });
+
+  export const setTodos = (todos) => ({
+    type: SET_TODOS,
+    payload: todos
+  })
   
   export const toggleTodo = (id) => ({
     type: TOGGLE_TODO,
@@ -47,3 +53,10 @@ import {
     type: UPDATE_SEARCH_TERM,
     payload: { searchTerm },
   });
+
+
+  /** 
+   * //TODO for todo file name should start with todo
+   * // TODO make proper folders in components for auth and todo
+   * 
+   */
