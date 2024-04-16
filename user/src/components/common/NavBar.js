@@ -14,7 +14,6 @@ export default function NavBar() {
         {
           token? (
             <>
-            {/* <Button color="inherit" component={Link} to="/">Create</Button> */}
             <Button color="inherit" onClick={() => {
               localStorage.removeItem("token");
               navigate('/login');

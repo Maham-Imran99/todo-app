@@ -16,7 +16,6 @@ const Todo = () => {
     const [createTodo] = useMutation(CREATE_TODO);
 
     const handleAddTodoClick = async (e) => {
-    // e.preventDefault();
     try {
         const response = await createTodo({
             variables: {

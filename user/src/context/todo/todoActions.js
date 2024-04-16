@@ -53,10 +53,3 @@ import {
     type: UPDATE_SEARCH_TERM,
     payload: { searchTerm },
   });
-
-
-  /** 
-   * //TODO for todo file name should start with todo
-   * // TODO make proper folders in components for auth and todo
-   * 
-   */

@@ -1,39 +1,32 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphQl/auth/mutations';
-// import { AuthContext } from '../context/AuthContext';
 import { TextField, Button, Box, Typography, Container, CircularProgress, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
-  
-//   const { setAuth } = useContext(AuthContext);
-  const [signUpUser, {data, loading, error} ] = useMutation(SIGNUP_USER); //returns an array. first is the method we can call on return 
+  const [signUpUser, { loading, error }] = useMutation(SIGNUP_USER);
+
   if (loading) return <CircularProgress />;
   if (error) return <Alert severity="error">{error.message}</Alert>;
-  if (data) console.log("Sign UP data", data)
-
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-        [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     });
   };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     signUpUser({
-        variables: {
-            userNew: formData
-        }
+      variables: {
+        userNew: formData
+      }
     })
-     console.log(formData);
   };
-
- 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,7 +51,6 @@ export default function SignUp() {
             name="firstName"
             autoComplete="fname"
             autoFocus
-            // value={formState.firstName}
             onChange={handleChange}
           />
           <TextField
@@ -69,7 +61,6 @@ export default function SignUp() {
             label="Last Name"
             name="lastName"
             autoComplete="lname"
-            // value={formState.lastName}
             onChange={handleChange}
           />
           <TextField
@@ -80,7 +71,6 @@ export default function SignUp() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            // value={formState.email}
             onChange={handleChange}
           />
           <TextField
@@ -92,10 +82,9 @@ export default function SignUp() {
             type="password"
             id="password"
             autoComplete="current-password"
-            // value={formState.password}
             onChange={handleChange}
           />
-          <Button 
+          <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -104,8 +93,8 @@ export default function SignUp() {
             Sign up
           </Button>
           <Button component={Link} to="/login" fullWidth>
-          Already have an account ? Login
-          </Button>  
+            Already have an account ? Login
+          </Button>
         </Box>
       </Box>
     </Container>

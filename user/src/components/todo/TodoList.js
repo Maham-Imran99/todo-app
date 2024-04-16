@@ -21,7 +21,7 @@ const TodoList = () => {
 
   const getFilteredTodos = () => {
     return todos.filter(todo => {
-      const matchesFilter = 
+      const matchesFilter =
         (filter === 'COMPLETED' && todo.completed) ||
         (filter === 'INCOMPLETE' && !todo.completed) ||
         filter === 'ALL';
@@ -45,7 +45,7 @@ const TodoList = () => {
           All Your Todos Here...
         </Typography>
         {filteredTodos.map((todo, index) => (
-          <TodoItem key={todo._id} todo={todo} index={index}/>
+          <TodoItem key={todo._id} todo={todo} index={index} />
         ))}
       </ListItem>
     </List>
