@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { textStyles, textLabels } from '../../constants/index';
+import { textStyles } from '../../theme/styledConstants';
+import { LOGIN } from '../../constants/constantText';
 
 const Home = () =>
   <Container>
@@ -18,7 +19,7 @@ const Home = () =>
     <Typography variant="h5" gutterBottom sx={textStyles.headerStyle}>
       At your fingertips -
       <Link to="/login" style={textStyles.linkStyle}>
-        {textLabels.LOGIN}
+        {LOGIN}
       </Link>
       - to your personal task manager today.
     </Typography>

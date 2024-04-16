@@ -4,8 +4,9 @@ import { TextField, Button, Box, Typography, Container, CircularProgress, Alert 
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { LOGIN_USER } from '../../graphQl/auth/mutations';
-import { mainContainerStyles } from '../../constants/index';
+import { mainContainerStyles } from '../../theme/styledConstants';
 import { useAuth } from '../../context/auth/AuthContext';
+import { LOGIN, LOGIN_MSG, SIGN_UP_MSG } from '../../constants/constantText';
 
 export default function SignIn() {
   const {login} = useAuth();
@@ -44,7 +45,7 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <Box sx={mainContainerStyles} >
         <Typography component="h1" variant="h5">
-          Login to your account
+         {LOGIN_MSG}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
@@ -75,10 +76,10 @@ export default function SignIn() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+           {LOGIN}
           </Button>
           <Button component={Link} to="/signup" fullWidth>
-            New here? Sign Up
+           {SIGN_UP_MSG}
           </Button>
         </Box>
       </Box>

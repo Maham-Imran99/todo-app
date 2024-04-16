@@ -25,10 +25,3 @@ export const textStyles = {
         color: colors.primaryColor
     }
 };
-
-export const textLabels = {
-  LOGIN: 'Login'
-};
-
-
-

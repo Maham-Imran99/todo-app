@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphQl/auth/mutations';
 import { TextField, Button, Box, Typography, Container, CircularProgress, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { mainContainerStyles } from '../../constants/index';
+import { mainContainerStyles } from '../../theme/styledConstants';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});

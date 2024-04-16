@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Box, Button, MenuItem, FormControl, Select } from '@mui/material';
 import { TodoContext } from '../../context/todo/TodoContext';
 import { filterTodos, markAllCompleted } from '../../context/todo/todoActions';
+import { COMPLETED, DEFAULT, INCOMPLETE, MARK_ALL_COMPLETED } from '../../constants/constantText';
 
 const FilterButton = () => {
     const { state: { filter }, dispatch } = useContext(TodoContext);
@@ -20,9 +21,9 @@ const FilterButton = () => {
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                 >
-                    <MenuItem value="ALL">Default</MenuItem>
-                    <MenuItem value="COMPLETED">Completed</MenuItem>
-                    <MenuItem value="INCOMPLETE">Incomplete</MenuItem>
+                    <MenuItem value="ALL">{DEFAULT}</MenuItem>
+                    <MenuItem value="COMPLETED">{COMPLETED}</MenuItem>
+                    <MenuItem value="INCOMPLETE">{INCOMPLETE}</MenuItem>
                 </Select>
             </FormControl>
             <Button
@@ -31,10 +32,8 @@ const FilterButton = () => {
                 onClick={() => dispatch(markAllCompleted())}
                 sx={{ textTransform: 'none', fontSize: '0.875rem' }}
             >
-                Mark All Completed
+               {MARK_ALL_COMPLETED}
             </Button>
-
-
         </Box>
 
     )

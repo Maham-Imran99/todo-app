@@ -8,6 +8,7 @@ import { addTodo, updateSearchTerm } from '../../context/todo/todoActions';
 import { CREATE_TODO } from '../../graphQl/todo/mutations';
 import FilterButtons from './FilterButton';
 import TodoList from './TodoList';
+import { TODO } from '../../constants/constantText';
 
 const Todo = () => {
     const {dispatch} = useContext(TodoContext);
@@ -22,7 +23,6 @@ const Todo = () => {
                 name: newTodo
             }
         });
-        console.log("resppppppppppppppp",response.data.todo)
         if (response.data && response.data.todo) {
             dispatch(addTodo(response.data.todo));
             setNewTodo(""); 
@@ -40,7 +40,7 @@ const Todo = () => {
     return (
         <Box maxWidth="md" mx="auto" p={4} bgcolor="grey.100" borderRadius="borderRadius">
             <Typography variant="h5" align="center" color="textPrimary" gutterBottom>
-                TODO APP
+              {TODO}
             </Typography>
             <Box display="flex" alignItems="center" mb={3}>
                 <TextField
@@ -82,14 +82,3 @@ const Todo = () => {
 }
 
 export default Todo
-
-
-/**use state is a hook that lets you add React state to function components. 
- * When you call it, you get back a pair: the current state value and a function that lets you update it.
- * You can use this function to set the state to a new value, and React will re-render the component with the updated state. 
- * 
- * useRef: is a hook that lets you keep a mutable reference to a value that doesn’t cause a component to re-render when it changes.
- * 
- * useEffect: It can be used for things like fetching data, directly interacting with the DOM, and setting up subscriptions or timers.
- * 
- * The useContext hook in React is a way for components to effectively share and use the same data without having to pass that data down through every level of the component tree. It's like a shortcut.*/
