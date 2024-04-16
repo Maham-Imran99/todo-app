@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { textStyles, textLabels } from '../../constants/index';
 
 const Home = () =>
   <Container>
@@ -14,17 +15,15 @@ const Home = () =>
     >
       Embrace organization
     </Typography>
-    {/*  // TODO REMOVE INLINE STYLING - style constants file*/}
-    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#5e35b1' }}>
-      At your fingertips - 
-      <Link to="/login" style={{ color: '#5e35b1', textDecoration: 'none', fontWeight: 'bold' }}>
-        {/* TODO MAKE constant for names*/}
-
-        Login
+    <Typography variant="h5" gutterBottom sx={textStyles.headerStyle}>
+      At your fingertips -
+      <Link to="/login" style={textStyles.linkStyle}>
+        {textLabels.LOGIN}
       </Link>
-       - to your personal task manager today.
+      - to your personal task manager today.
     </Typography>
 
   </Container>
 
 export default Home
+

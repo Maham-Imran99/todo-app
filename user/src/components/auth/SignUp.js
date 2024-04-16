@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphQl/auth/mutations';
 import { TextField, Button, Box, Typography, Container, CircularProgress, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { mainContainerStyles } from '../../constants/index';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -30,14 +31,7 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <Box sx={mainContainerStyles}>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>

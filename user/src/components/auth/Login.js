@@ -4,6 +4,7 @@ import { TextField, Button, Box, Typography, Container, CircularProgress, Alert 
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { LOGIN_USER } from '../../graphQl/auth/mutations';
+import { mainContainerStyles } from '../../constants/index';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -39,14 +40,7 @@ export default function SignIn() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <Box sx={mainContainerStyles} >
         <Typography component="h1" variant="h5">
           Login to your account
         </Typography>

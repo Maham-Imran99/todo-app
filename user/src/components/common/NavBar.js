@@ -31,9 +31,3 @@ export default function NavBar() {
     </AppBar>
   );
 }
-
-
-/**
- * 
- * //TODO MAKE A HOME BUTTON AND ADD FOR TOKEN. JUST REDIRECT
- */
