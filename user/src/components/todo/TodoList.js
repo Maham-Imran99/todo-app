@@ -21,16 +21,14 @@ const TodoList = () => {
   });
 
   const getFilteredTodos = () => {
-    console.log('getFilteredTodos')
-    return todos.filter(todo => {
+    return Array.isArray(todos) ? todos.filter(todo => {
       const matchesFilter =
         (filter === 'COMPLETED' && todo.completed) ||
         (filter === 'INCOMPLETE' && !todo.completed) ||
         filter === 'ALL';
-        const matchesSearch = todo.name.toLowerCase().includes(searchTerm.toLowerCase());
-        console.log(matchesSearch,matchesFilter)
+      const matchesSearch = todo.name?.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesFilter && matchesSearch;
-    });
+    }) : [];
   };
 
   const filteredTodos = getFilteredTodos();
@@ -46,7 +44,7 @@ const TodoList = () => {
     <List>
       <ListItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
         <Typography variant="subtitle1" sx={{ fontStyle: 'italic', my: 2 }}>
-         {ALL_TODOS}
+          {ALL_TODOS}
         </Typography>
         {filteredTodos.map((todo, index) => (
           <TodoItem key={todo._id} todo={todo} index={index} />

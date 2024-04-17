@@ -26,6 +26,8 @@ const Todo = () => {
         if (response.data && response.data.todo) {
             dispatch(addTodo(response.data.todo));
             setNewTodo(""); 
+            dispatch(updateSearchTerm(""));
+            window.location.reload();
         }
     } catch (error) {
         console.error("Error creating todo", error);
